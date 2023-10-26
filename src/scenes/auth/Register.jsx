@@ -167,7 +167,6 @@ const Register = () => {
 
 	const renderStepOne = () => (
 		<>
-			<h2 className='register__title'>Join StockBets today</h2>
 			<div className='register__social'>
 				<GoogleOauth />
 			</div>

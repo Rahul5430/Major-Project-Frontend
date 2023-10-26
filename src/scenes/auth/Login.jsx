@@ -61,7 +61,6 @@ const Login = () => {
 		>
 			<div className='login__content'>
 				<div className='login__box'>
-					<h2 className='login__title'>Sign in to StockBets</h2>
 					<div className='login__social'>
 						<GoogleOauth />
 					</div>
