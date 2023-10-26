@@ -1,0 +1,269 @@
+.user-panel {
+	display: flex;
+	height: 75px;
+	background-color: var(--tertiary-color);
+	color: var(--background-color);
+	width: 100%;
+	margin-top: 43px;
+}
+
+.user-panel__profile {
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.user-panel__profile-img {
+	width: 5%;
+}
+
+.user-panel__profile-img img {
+	height: 50px;
+	border-radius: 50%;
+}
+
+.user-panel__profile-info {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	align-content: space-evenly;
+}
+
+.user-panel__profile-name {
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: var(--background-color);
+}
+
+.user-panel__profile-name img {
+	height: 14px;
+	cursor: pointer;
+}
+
+.user-panel__profile-username {
+	font-size: 14px;
+	color: var(--background-color-light);
+	text-align: center;
+}
+
+.user-panel__profile-join {
+	font-size: 14px;
+	color: var(--background-color-light);
+	text-align: center;
+	margin-left: 70px;
+}
+
+.user-panel__profile-username-status {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.user-panel__profile-status {
+	/* Common styles for the status element */
+	display: flex;
+	font-size: 14px;
+	font-weight: bold;
+	justify-content: center;
+	align-items: center;
+	width: auto;
+	padding: 15px;
+	padding-top: 5px;
+	padding-bottom: 6px;
+	border-radius: 20px;
+	margin-top: 5px;
+}
+
+.user-panel__status-in-game {
+	/* Styles for the In-Game status */
+	background-color: var(--primary-color); /* Blue */
+	color: white;
+}
+
+.user-panel__status-waiting {
+	/* Styles for the Waiting for Game status */
+	background-color: var(--warning-color); /* Red */
+	color: white;
+}
+
+.user-panel__status-open {
+	/* Styles for the Open to Play status */
+	background-color: var(--success-color); /* Green */
+	color: white;
+}
+
+.user-panel__profile-winnings {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	font-weight: bold;
+	color: var(--accent-color-3);
+	cursor: pointer;
+	width: 15%;
+}
+
+.user-panel__profile-winnings div {
+	margin: auto;
+}
+
+.user-panel__game-info,
+.user-panel__quick-action {
+	display: flex;
+	width: auto;
+	align-items: center;
+	justify-content: space-evenly;
+	margin-left: 50px;
+}
+
+.user-panel__game-info-label,
+.user-panel__quick-action-label {
+	font-size: 14px;
+	font-weight: bold;
+	color: var(--accent-color-2);
+}
+
+.user-panel__game-info-value,
+.user-panel__quick-action-value {
+	font-size: 14px;
+	font-weight: bold;
+	color: var(--background-color); /* Change the color to white */
+	margin: auto;
+}
+
+.user-panel__join-button {
+	padding: 8px 16px;
+	font-size: 14px;
+	background-color: var(--accent-color-3);
+	color: var(--background-color); /* Change the color to white */
+	border: none;
+	cursor: pointer;
+	border-radius: 20px;
+}
+
+.user-panel__join-button:focus {
+	outline: none;
+}
+
+.user-panel__icon {
+	display: flex;
+	justify-content: center;
+	height: 30px;
+}
+
+.user-panel__icon img {
+	display: flex;
+	justify-content: center;
+	height: 30px;
+}
+
+.user-panel__icons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+}
+
+.user-panel__icons img {
+	display: flex;
+	justify-content: center;
+	height: 30px;
+}
+
+.user-panel__edit-icon {
+	height: 30px;
+}
+
+.user-panel__icon-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 70px;
+}
+
+.user-panel__icon-container img {
+	height: 30px;
+}
+
+.user-panel__icon-label {
+	font-size: 12px;
+	color: var(--background-color-light);
+	text-align: center;
+}
+
+.user-panel__Gamerank {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-panel__Gamerank img {
+	margin-top: 4px;
+	display: flex;
+	flex-direction: column;
+	height: 22px;
+	margin-bottom: 4px;
+}
+
+.user-panel__gamescore {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-panel__slider {
+	flex: 1;
+	overflow: hidden;
+	padding: 0px;
+}
+
+.user-panel__slide {
+	display: flex;
+	align-items: center;
+	/* Add styling for each slide */
+	padding: 10px;
+	background-color: var(--tertiary-color);
+	color: var(--background-color);
+	width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 1500px) {
+	.user-panel__icon-container {
+		margin-left: 50px;
+	}
+
+	.user-panel__profile-join {
+		margin-left: 50px;
+	}
+}
+
+@media (max-width: 786px) {
+	.user-panel__icon-container {
+		margin-left: 20px;
+	}
+
+	.user-panel__profile-join {
+		margin-left: 20px;
+	}
+}
+
+@media (max-width: 500px) {
+	.user-panel__icon-container {
+		margin-left: 10px;
+	}
+
+	.user-panel__profile-join {
+		font-size: 12px;
+		margin-left: 10px;
+	}
+
+	.user-panel__icon-container img {
+		height: 20px;
+	}
+
+	.user-panel__Gamerank img {
+		margin-top: 2px;
+		height: 16px;
+		margin-bottom: 2px;
+	}
+}
