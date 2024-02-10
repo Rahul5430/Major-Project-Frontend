@@ -49,11 +49,6 @@ const Header = () => {
 					<li className='header__nav-item'>
 						<Link to='/'>Home</Link>
 					</li>
-					<li className='header__nav-item'>
-						<Link to='/#about-section' href='/#about-section'>
-							About
-						</Link>
-					</li>
 					{isAuth ? (
 						<>
 							<li className='header__nav-item'>

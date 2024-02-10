@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import profilePic from '../../../../assets/user-placeholder.jpg';
 import usePost from '../../../../hooks/usePost';
 
-const ProfileSection = ({ data, details }) => {
+const ProfileSection = ({ data }) => {
 	const navigate = useNavigate();
 
 	const {

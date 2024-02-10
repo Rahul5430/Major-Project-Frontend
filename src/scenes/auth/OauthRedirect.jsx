@@ -11,16 +11,15 @@ const OauthRedirect = () => {
 
 	const [searchParams] = useSearchParams();
 	const token = searchParams.get('token');
-	const isPhoneVerified = searchParams.get('isPhoneVerified') === 'true';
 
 	if (token) {
 		const data = { token };
-		setToken(data, isPhoneVerified);
+		setToken(data);
 	} else {
 		return <OauthFail />;
 	}
 
-	return <Navigate to='/verifyPhone' />;
+	return <Navigate to='/dashboard' />;
 };
 
 export default OauthRedirect;

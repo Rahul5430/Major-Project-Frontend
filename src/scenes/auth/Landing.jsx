@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Landing = () => {
 	const outlineStyle = {
 		outline: 'none',
@@ -225,7 +227,8 @@ const Landing = () => {
 									}}
 									data-framer-component-type='RichTextContainer'
 								>
-									<p
+									<Link
+										to='/graph'
 										style={{
 											'--font-selector':
 												'R0Y7SW5zdHJ1bWVudCBTYW5zLTUwMA==',
@@ -236,9 +239,10 @@ const Landing = () => {
 											'--framer-text-alignment': 'left',
 										}}
 										className='framer-text'
+										onClick={() => {}}
 									>
 										Graph Page
-									</p>
+									</Link>
 								</div>
 							</div>
 						</div>

@@ -3,9 +3,8 @@ import './Register.css';
 
 import React, { useState } from 'react';
 import { Parallax } from 'react-parallax';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-import LandingBG from '../../assets/LandingInstructionsBG.jpg';
 import GoogleOauth from '../../components/auth/oauth';
 import InputField from '../../components/inputfields/InputField';
 import { useAuthContext } from '../../hooks/authContext';
@@ -27,6 +26,11 @@ const Login = () => {
 	} = usePost(`${process.env.REACT_APP_BACKEND_URL}/auth/login`);
 
 	const navigate = useNavigate();
+	const [searchParams] = useSearchParams();
+	let callbackUrl = searchParams.get('callbackUrl');
+	if (callbackUrl) {
+		callbackUrl = encodeURIComponent(callbackUrl);
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -49,12 +53,25 @@ const Login = () => {
 		});
 	};
 
-	const handleForgotPassword = () => navigate('/forgotpassword');
-	const handleSignUp = () => navigate('/register');
+	const handleSignUp = () =>
+		navigate(
+			`/register${callbackUrl ? `?callbackUrl=${callbackUrl}` : ''}`
+		);
+
+	const handleTAndC = () =>
+		navigate(
+			`/termsandconditions${
+				callbackUrl ? `?callbackUrl=${callbackUrl}` : ''
+			}`
+		);
+
+	const handlePrivacyPolicy = () =>
+		navigate(
+			`/privacypolicy${callbackUrl ? `?callbackUrl=${callbackUrl}` : ''}`
+		);
 
 	return (
 		<Parallax
-			bgImage={LandingBG}
 			strength={500}
 			className='login__bg'
 			style={{ transition: 'transform 0.5s ease-out' }}
@@ -62,13 +79,14 @@ const Login = () => {
 			<div className='login__content'>
 				<div className='login__box'>
 					<div className='login__social'>
-						<GoogleOauth />
+						<GoogleOauth callbackUrl={callbackUrl} />
 					</div>
 					<div className='login__divider'>
 						<span className='login__divider-line' />
 						<span className='login__divider-text'>or</span>
 						<span className='login__divider-line' />
 					</div>
+
 					<form className='register__form' onSubmit={handleSubmit}>
 						<InputField
 							label='Username'
@@ -95,13 +113,15 @@ const Login = () => {
 							Login
 						</button>
 					</form>
-					<a
-						href='/forgotpassword'
-						onClick={handleForgotPassword}
+
+					<Link
+						to={`/forgotpassword${
+							callbackUrl ? `?callbackUrl=${callbackUrl}` : ''
+						}`}
 						className='login__button_2 login__form'
 					>
 						Forgot password?
-					</a>
+					</Link>
 					<p className='login__signup-text'>
 						Don't have an account?{' '}
 						<span
@@ -114,6 +134,32 @@ const Login = () => {
 							Sign Up
 						</span>
 					</p>
+					<div className='login__footer'>
+						<p className='login__footer-text'>
+							By signing in, you agree to our
+							<br />{' '}
+							<span
+								className='login__footer-link'
+								onClick={handleTAndC}
+								onKeyDown={handleTAndC}
+								role='button'
+								tabIndex={0}
+							>
+								T &amp; C
+							</span>{' '}
+							and{' '}
+							<span
+								className='login__footer-link'
+								onClick={handlePrivacyPolicy}
+								onKeyDown={handlePrivacyPolicy}
+								role='button'
+								tabIndex={0}
+							>
+								Privacy Policy
+							</span>
+							.
+						</p>
+					</div>
 				</div>
 			</div>
 		</Parallax>

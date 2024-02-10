@@ -84,14 +84,6 @@ function RequireAuth({ children }) {
 		return <Navigate to='/login' state={{ from: location.pathname }} />;
 	}
 
-	if (!authObject.isPhoneVerified && location.pathname !== '/verifyPhone') {
-		return <Navigate to='/verifyPhone' />;
-	}
-
-	if (authObject.isPhoneVerified && location.pathname === '/verifyPhone') {
-		return <Navigate to='/dashboard' />;
-	}
-
 	return <>{children}</>;
 }
 
