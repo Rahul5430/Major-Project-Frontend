@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 import './Register.css';
 
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import React, { useState } from 'react';
 import { Parallax } from 'react-parallax';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import GoogleOauth from '../../components/auth/oauth';
 import InputField from '../../components/inputfields/InputField';
@@ -31,11 +29,9 @@ const Register = () => {
 		sendRequest: step0SendRequest,
 	} = usePost(`${process.env.REACT_APP_BACKEND_URL}/auth/checkUsername`);
 
-	const {
-		isLoading: step1Loading,
-		error: step1PostError,
-		sendRequest: step1SendRequest,
-	} = usePost(`${process.env.REACT_APP_BACKEND_URL}/auth/register`);
+	const { sendRequest: step1SendRequest } = usePost(
+		`${process.env.REACT_APP_BACKEND_URL}/auth/register`
+	);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -81,104 +77,6 @@ const Register = () => {
 
 	const navigate = useNavigate();
 	const handleSignIn = () => navigate('/login');
-	const handleTAndC = () => navigate('/termsandconditions');
-	const handlePrivacyPolicy = () => navigate('/privacypolicy');
-
-	const renderStepOne = () => (
-		<>
-			<div className='register__social'>
-				<GoogleOauth />
-			</div>
-			<div className='register__divider'>
-				<span className='register__divider-line' />
-				<span className='register__divider-text'>or</span>
-				<span className='register__divider-line' />
-			</div>
-			<form className='register__form' onSubmit={handleSubmit}>
-				<InputField
-					label='Full Name'
-					type='text'
-					placeholder='Enter your full name'
-					value={fullName}
-					onChange={(e) => setFullName(e.target.value)}
-				/>
-				<InputField
-					label='Username'
-					type='text'
-					placeholder='Enter your username'
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-				/>
-				<InputField
-					label='Email'
-					type='text'
-					placeholder='Enter your email'
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<InputField
-					label='Password'
-					type='password'
-					placeholder='Enter your password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<InputField
-					label='Confirm Password'
-					type='password'
-					placeholder='Confirm your password'
-					value={confirmPassword}
-					onChange={(e) => setConfirmPassword(e.target.value)}
-				/>
-				<button type='submit' className='register__button'>
-					Create Account
-				</button>
-			</form>
-			{error && <p className='register__error'>{error}</p>}
-			{step0Loading && <p className='register__error'>Loading...</p>}
-			{step0PostError && (
-				<p className='register__error'>{step0PostError}</p>
-			)}
-			<p className='register__signup-text'>
-				Have an account already?{' '}
-				<span
-					className='register__signup-link'
-					onClick={handleSignIn}
-					onKeyDown={handleSignIn}
-					role='button'
-					tabIndex={0}
-				>
-					Sign In
-				</span>
-			</p>
-			<div className='register__footer'>
-				<p className='register__footer-text'>
-					By signing up, you agree to our
-					<br />{' '}
-					<span
-						className='register__footer-link'
-						onClick={handleTAndC}
-						onKeyDown={handleTAndC}
-						role='button'
-						tabIndex={0}
-					>
-						T&amp;C
-					</span>{' '}
-					and{' '}
-					<span
-						className='register__footer-link'
-						onClick={handlePrivacyPolicy}
-						onKeyDown={handlePrivacyPolicy}
-						role='button'
-						tabIndex={0}
-					>
-						Privacy Policy
-					</span>
-					.
-				</p>
-			</div>
-		</>
-	);
 
 	return (
 		<Parallax
@@ -188,7 +86,75 @@ const Register = () => {
 			style={{ transition: 'transform 0.5s ease-out' }}
 		>
 			<div className='register__content'>
-				<div className='register__box'>{renderStepOne()}</div>
+				<div className='register__box'>
+					<div className='register__social'>
+						<GoogleOauth />
+					</div>
+					<div className='register__divider'>
+						<span className='register__divider-line' />
+						<span className='register__divider-text'>or</span>
+						<span className='register__divider-line' />
+					</div>
+					<form className='register__form' onSubmit={handleSubmit}>
+						<InputField
+							label='Full Name'
+							type='text'
+							placeholder='Enter your full name'
+							value={fullName}
+							onChange={(e) => setFullName(e.target.value)}
+						/>
+						<InputField
+							label='Username'
+							type='text'
+							placeholder='Enter your username'
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+						/>
+						<InputField
+							label='Email'
+							type='text'
+							placeholder='Enter your email'
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+						<InputField
+							label='Password'
+							type='password'
+							placeholder='Enter your password'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+						<InputField
+							label='Confirm Password'
+							type='password'
+							placeholder='Confirm your password'
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+						/>
+						<button type='submit' className='register__button'>
+							Create Account
+						</button>
+					</form>
+					{error && <p className='register__error'>{error}</p>}
+					{step0Loading && (
+						<p className='register__error'>Loading...</p>
+					)}
+					{step0PostError && (
+						<p className='register__error'>{step0PostError}</p>
+					)}
+					<p className='register__signup-text'>
+						Have an account already?{' '}
+						<span
+							className='register__signup-link'
+							onClick={handleSignIn}
+							onKeyDown={handleSignIn}
+							role='button'
+							tabIndex={0}
+						>
+							Sign In
+						</span>
+					</p>
+				</div>
 			</div>
 		</Parallax>
 	);

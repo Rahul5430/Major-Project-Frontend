@@ -58,18 +58,6 @@ const Login = () => {
 			`/register${callbackUrl ? `?callbackUrl=${callbackUrl}` : ''}`
 		);
 
-	const handleTAndC = () =>
-		navigate(
-			`/termsandconditions${
-				callbackUrl ? `?callbackUrl=${callbackUrl}` : ''
-			}`
-		);
-
-	const handlePrivacyPolicy = () =>
-		navigate(
-			`/privacypolicy${callbackUrl ? `?callbackUrl=${callbackUrl}` : ''}`
-		);
-
 	return (
 		<Parallax
 			strength={500}
@@ -134,32 +122,6 @@ const Login = () => {
 							Sign Up
 						</span>
 					</p>
-					<div className='login__footer'>
-						<p className='login__footer-text'>
-							By signing in, you agree to our
-							<br />{' '}
-							<span
-								className='login__footer-link'
-								onClick={handleTAndC}
-								onKeyDown={handleTAndC}
-								role='button'
-								tabIndex={0}
-							>
-								T &amp; C
-							</span>{' '}
-							and{' '}
-							<span
-								className='login__footer-link'
-								onClick={handlePrivacyPolicy}
-								onKeyDown={handlePrivacyPolicy}
-								role='button'
-								tabIndex={0}
-							>
-								Privacy Policy
-							</span>
-							.
-						</p>
-					</div>
 				</div>
 			</div>
 		</Parallax>

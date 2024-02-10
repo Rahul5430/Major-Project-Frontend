@@ -17,6 +17,10 @@
 	--info-color: #33b5e5;
 }
 
+html {
+	background-color: #efead4;
+}
+
 body {
 	font-family: 'Muli', sans-serif;
 }
@@ -75,28 +79,30 @@ html {
 
 /* For Webkit browsers like Chrome/Safari */
 ::-webkit-scrollbar {
-    width: 12px; /* Adjust scrollbar width */
+	width: 12px; /* Adjust scrollbar width */
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--accent-color-1); /* Adjust track background */
+	background: var(--accent-color-1); /* Adjust track background */
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--tertiary-color); /* Adjust thumb background */
-    border-radius: 10px; /* Add rounded corners to thumb */
-    border: 1px solid transparent; /* Creates a visual gap */
-    background-clip: padding-box; /* Ensures the background color doesn't bleed beyond the border */
+	background-color: var(--tertiary-color); /* Adjust thumb background */
+	border-radius: 10px; /* Add rounded corners to thumb */
+	border: 1px solid transparent; /* Creates a visual gap */
+	background-clip: padding-box; /* Ensures the background color doesn't bleed beyond the border */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--secondary-color); /* Adjust thumb background on hover */
+	background-color: var(
+		--secondary-color
+	); /* Adjust thumb background on hover */
 }
 
 /* For Firefox */
 * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-color-2) var(--accent-color-1); /* Adjust thumb and track color */
+	scrollbar-width: thin;
+	scrollbar-color: var(--accent-color-2) var(--accent-color-1); /* Adjust thumb and track color */
 }
 
 /* ... rest of your styles ... */

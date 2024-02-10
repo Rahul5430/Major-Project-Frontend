@@ -2,17 +2,13 @@ import './DashLayout.css';
 
 import React from 'react';
 
-import DashBG from '../../assets/DashBG.png';
 import DashHeader from './DashHeader';
 
 function DashLayout({ children }) {
 	return (
-		<div
-			className='dash-layout'
-			style={{ backgroundImage: `url(${DashBG})` }}
-		>
+		<div className='dash-layout'>
 			<DashHeader />
-			{children}
+			<main className='dash-layout-main-content'>{children}</main>
 		</div>
 	);
 }

@@ -81,6 +81,25 @@ const Sidebar = () => {
 						Log Out
 					</span>
 				</div>
+				{!isSidebarOpen && (
+					<div className='sidebar__icons-strip'>
+						<img
+							src={homeIcon}
+							alt='Home'
+							className='sidebar__icon sidebar__icon-strip-item'
+						/>
+						<img
+							src={userIcon}
+							alt='User'
+							className='sidebar__icon sidebar__icon-strip-item'
+						/>
+						<img
+							src={settingIcon}
+							alt='Settings'
+							className='sidebar__icon sidebar__icon-strip-item'
+						/>
+					</div>
+				)}
 			</aside>
 		</div>
 	);
