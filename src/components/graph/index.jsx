@@ -13,68 +13,44 @@ import {
 } from 'recharts';
 import io from 'socket.io-client';
 
+const CustomDot = (props) => {
+	const { cx, cy, stroke, payload, value } = props;
+
+	if (payload && payload.data && payload.index === payload.data.length - 1) {
+		return (
+			<g>
+				<circle cx={cx} cy={cy} r={6} fill={stroke} />
+				<text
+					x={cx}
+					y={cy - 10}
+					dy={-12}
+					textAnchor='middle'
+					fill='#666'
+				>
+					{value}
+				</text>
+			</g>
+		);
+	}
+
+	return null;
+};
+
 const Chart = () => {
-	const [data, setData] = useState([]);
+	const [sensorData, setSensorData] = useState([]);
 
 	const socketRef = useRef();
 
-	// We limit the number of reads to the last 24 reading and drop the last read
-	const limitData = (currentData, message) => {
-		if (currentData.length > 24) {
-			console.log('Limit reached, dropping first record!');
-			currentData.shift();
-		}
-		return [
-			...currentData,
-			{
-				id: message.date,
-				sensorData: message.sensorData,
-			},
-		];
-	};
-
 	useEffect(() => {
-		// Dummy data generation
-		const generateDummyData = () => {
-			const dummyData = [];
-			const startDate = new Date();
-			startDate.setHours(startDate.getHours() - 24); // Start 24 hours ago
-			for (let i = 0; i < 24; i += 1) {
-				const date = new Date(startDate);
-				date.setHours(startDate.getHours() + i);
-				const sensorData = Math.random() * 100; // Random sensor data
-				dummyData.push({
-					id: date.getTime(), // Unique ID for each data point
-					date: date.toLocaleTimeString([], {
-						hour: '2-digit',
-						minute: '2-digit',
-					}),
-					sensorData: sensorData.toFixed(2), // Limit to 2 decimal places
-				});
-			}
-			return dummyData;
-		};
-
-		setData(generateDummyData());
-
 		socketRef.current = io.connect(process.env.REACT_APP_BACKEND_URL);
 
-		socketRef.current.on('message', (ev) => {
-			const message = JSON.parse(ev.data);
-			// console.log(`Received message :: ${message.sensorData}`);
-			// Upon receiving websocket message then add it to the list of data that we are displaying
-			// const newDataArray = [
-			// 	...data,
-			// 	{
-			// 		id: message.date,
-			// 		sensorData: message.sensorData,
-			// 	},
-			// ];
-			// console.log(newDataArray);
-			setData((currentData) => limitData(currentData, message));
+		socketRef.current.on('sensorData', (data) => {
+			console.log('Received sensor data from server:', data);
+			setSensorData((prevData) => [...prevData, data]);
 		});
 
 		return () => {
+			socketRef.current.off('sensorData');
 			socketRef.current.disconnect();
 		};
 	}, []);
@@ -86,25 +62,26 @@ const Chart = () => {
 					<LineChart
 						width={800}
 						height={400}
-						data={data}
+						data={sensorData}
 						margin={{
-							top: 0,
-							right: 0,
-							left: 0,
-							bottom: 0,
+							top: 5,
+							right: 30,
+							left: 20,
+							bottom: 5,
 						}}
 					>
 						<CartesianGrid strokeDasharray='3 3' />
-						<XAxis dataKey='date' />
+						<XAxis dataKey='time' />
 						<YAxis />
 						<Tooltip />
 						<Legend />
 						<Line
 							type='monotone'
-							dataKey='sensorData'
+							dataKey='voltage'
 							stroke='#8884d8'
-							activeDot={{ r: 8 }}
 							strokeWidth='2'
+							animationDuration={0}
+							dot={<CustomDot />}
 						/>
 					</LineChart>
 				</ResponsiveContainer>
