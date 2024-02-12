@@ -6,13 +6,13 @@ import React from 'react';
 const WelcomePage = () => {
 	return (
 		<div className='welcome-page'>
-			<header>
+			<div className='welcome-page-header'>
 				<h1>Welcome to Ground Vibration Monitoring System</h1>
 				<p>
 					Real-time monitoring and analysis of wireless ground
 					vibrations
 				</p>
-			</header>
+			</div>
 			<main>
 				<section>
 					<h2>About Us</h2>

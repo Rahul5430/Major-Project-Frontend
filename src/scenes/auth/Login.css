@@ -24,10 +24,10 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh; /* Change height to min-height */
 	padding-bottom: 50px; /* Add padding to create space for the footer */
 	color: white;
 	font-family: 'Muli', sans-serif;
+	flex: 1;
 }
 
 .login__box {
@@ -36,7 +36,6 @@
 	padding: 40px;
 	width: 450px;
 	margin: 0 auto;
-	margin-top: 150px;
 	border: 2px solid var(--primary-color);
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
 	z-index: 2;

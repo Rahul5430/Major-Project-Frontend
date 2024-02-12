@@ -60,7 +60,7 @@ function AuthProvider({ children }) {
 			}
 		};
 
-		if (authState?.username === '' || !authState.username) {
+		if (!authState?.username) {
 			checkIsUserVerified();
 		}
 	}, [authState]);
