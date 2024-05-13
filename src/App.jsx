@@ -17,6 +17,7 @@ const Dashboard = React.lazy(() =>
 );
 const User = React.lazy(() => import('./scenes/dashboard/main/User'));
 const Graph = React.lazy(() => import('./scenes/dashboard/main/Graph'));
+const OauthRedirect = React.lazy(() => import('./scenes/auth/OauthRedirect'));
 
 const App = () => {
 	return (
@@ -32,6 +33,7 @@ const App = () => {
 						</Suspense>
 					}
 				>
+					<Route path='oauth' element={<OauthRedirect />} />
 					<Route
 						path='/'
 						element={
